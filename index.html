@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portale Segnalazioni - I.S.I.S.S. Magnaghi-Solari</title>
     
-    <!-- TAG PER L'ICONA NELLA SCHEDA DEL BROWSER (FAVICON) -->
-    <!-- Sostituisci "logo-icona.png" con il nome esatto del tuo file -->
     <link rel="icon" type="image/png" href="logo-icona.png">
 
     <style>
@@ -53,8 +51,6 @@
             font-size: 0.95rem;
             opacity: 0.9;
         }
-
-        /* Rimosso lo stile per .web-link non più utilizzato nell'header */
 
         .nav-tabs {
             display: flex;
@@ -319,8 +315,28 @@
         footer {
             text-align: center;
             font-size: 0.8rem;
-            color: #555555;
-            margin-top: 20px;
+            color: #444444;
+            margin-top: 30px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-top: 20px;
+        }
+
+        .footer-links {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .footer-links a {
+            color: #003366;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -329,7 +345,6 @@
     <header>
         <h1>🚨 Portale Segnalazioni - Casi di presunto Bullismo e Cyberbullismo</h1>
         <p>I.S.I.S.S. "Magnaghi-Solari" • Salsomaggiore Terme • Parma • Fidenza</p>
-        <!-- Rimosso il link giallo qui -->
     </header>
 
     <ul class="nav-tabs">
@@ -340,7 +355,6 @@
 
     <div class="container">
         
-        <!-- TAB 1: SPAZIO INFORMATIVO -->
         <div id="content-info" class="tab-content active">
             <div class="card">
                 <div class="logo-container">
@@ -360,13 +374,12 @@
                     <ol>
                         <li><strong>Uso dello Smartphone (Consigliato):</strong> Si consiglia caldamente di compilare e inviare le segnalazioni tramite smartphone o tablet. I dispositivi mobili integrano nativamente la gestione dei collegamenti di posta, rendendo l'invio immediato.</li>
                         <li><strong>Account Istituzionale:</strong> Per l'invio della segnalazione, assicurarsi che sul proprio dispositivo sia configurato e attivo l'account email istituzionale della scuola (es. <code>utente@magnaghisolari.edu.it</code> su applicazione Gmail o Outlook).</li>
-                        <li><strong>Due modalità di segnalazione:</strong> È possibile utilizzare la sezione <strong>SEGNALA (MOD.1)</strong> per un rapido invio digitale. In alternativa, nella sezione <strong>Documenti e Link</strong> (download), è disponibile il modello cartaceo ufficiale da scaricare, compilare e consegnare manualmente.</li>
+                        <li><strong>Due modalità di segnalazione:</strong> È possibile utilizzare la sezione <strong>SEGNALA (MOD.1)</strong> per un rapido invio digitale. In alternativa, nella sezione <strong>Documenti e Link</strong> è disponibile il modello cartaceo ufficiale da scaricare, compilare e consegnare manualmente ad un docente di riferimento della classe.</li>
                     </ol>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 2: MODULO SEGNALAZIONE -->
         <div id="content-segnala" class="tab-content">
             <div class="card">
                 <h2>MODULO 1: Scheda di Segnalazione Caso</h2>
@@ -487,7 +500,6 @@
             </div>
         </div>
 
-        <!-- TAB 3: AREA DOWNLOAD PDF E LINK UTILI -->
         <div id="content-download" class="tab-content">
             <div class="card">
                 <h2>Documenti, Modulistica e Link Utili</h2>
@@ -496,7 +508,6 @@
                 </p>
                 
                 <ul class="download-list">
-                    <!-- LINK AL README DI GITHUB - FUNZIONANTE -->
                     <li class="download-item" style="border-left: 4px solid #24292e;">
                         <div class="file-info">
                             <h4>README.md del Progetto (GitHub)</h4>
@@ -567,6 +578,11 @@
         <footer>
             I.S.I.S.S. "Magnaghi - Solari" - Salsomaggiore Terme • Fidenza • Parma<br>
             Contatti: pris006003@istruzione.it | pris006003@pec.istruzione.it
+            <div class="footer-links">
+                <a href="https://www.magnaghisolari.edu.it/privacy" target="_blank">Informativa Privacy</a>
+                <a href="https://www.magnaghisolari.edu.it/note-legali" target="_blank">Note legali</a>
+                <a href="https://www.magnaghisolari.edu.it/accessibilita" target="_blank">Dichiarazione di accessibilità</a>
+            </div>
         </footer>
     </div>
 
