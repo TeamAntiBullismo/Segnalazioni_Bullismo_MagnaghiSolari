@@ -18,4 +18,4 @@ I dispositivi mobili integrano nativamente la gestione dei collegamenti di posta
 
 🔗 Link Ufficiale
 L'applicazione è consultabile online al seguente indirizzo:
-👉 [https://teamantibullismo.github.io/team-antibullismo/](https://teamantibullismo.github.io/team-antibullismo/)
+👉 [[https://teamantibullismo.github.io/team-antibullismo/](https://teamantibullismo.github.io/team-antibullismo/)](https://teamantibullismo.github.io/Segnalazioni_Bullismo_MagnaghiSolari/)
