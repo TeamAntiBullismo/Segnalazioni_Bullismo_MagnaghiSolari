@@ -19,3 +19,5 @@ I dispositivi mobili integrano nativamente la gestione dei collegamenti di posta
 Inoltrare eventuali segnalazioni tecnciche o di manfunzionamento del servizio al seguente indirizzo e-mail: team.antibullismo@magnaghisolari.edu.it
 
 Referente web-app: Prof. Scozzari Daniele | email: daniele.scozzari@magnaghisolari.edu.it
+
+Si ringrazia per la collaborazione. 
