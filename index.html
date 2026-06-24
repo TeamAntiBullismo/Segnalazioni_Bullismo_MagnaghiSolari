@@ -152,6 +152,30 @@
             margin-bottom: 6px;
         }
 
+        .emergency-box {
+            background-color: #ffebee;
+            border-left: 4px solid var(--red-button);
+            padding: 15px;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        .emergency-box h3 {
+            font-size: 1rem;
+            color: var(--red-button-hover);
+            margin-bottom: 8px;
+        }
+
+        .emergency-box ul {
+            margin-left: 20px;
+            list-style-type: square;
+        }
+
+        .emergency-box li {
+            margin-bottom: 4px;
+        }
+
         .form-group {
             margin-bottom: 18px;
         }
@@ -474,12 +498,21 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="frequenza_episodi">5. Quante volte sono successi gli episodi? *</label>
+                        <label Hollywood for="frequenza_episodi">5. Quante volte sono successi gli episodi? *</label>
                         <input type="text" id="frequenza_episodi" required placeholder="Es: Episodio isolato, succede ogni giorno...">
                     </div>
 
-                    <button type="submit" class="submit-btn">INVIA SEGNALAZIONE AL TEAM 🚨</button>
+                    <button type="submit" class="submit-btn">INVIA SEGNALAZIONE 🚨</button>
                 </form>
+
+                <div class="emergency-box">
+                    <h3>📞 Numeri utili in caso di emergenza</h3>
+                    <ul>
+                        <li><strong>114</strong> - Emergenza Infanzia (gestito da Telefono Azzurro)</li>
+                        <li><strong>1.96.96</strong> - Linea d'ascolto Telefono Azzurro</li>
+                        <li><strong>112</strong> - Numero Unico di Emergenza (Forze dell'Ordine)</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -518,6 +551,30 @@
 
                     <li class="download-item">
                         <div class="file-info">
+                            <h4>Telefono Azzurro - Linee Guida e Materiali</h4>
+                            <p>Documentazione e supporti per la tutela dei minori</p>
+                        </div>
+                        <a href="TELEFONO_AZZURRO_GUIDA.pdf" download class="download-link">Scarica PDF</a>
+                    </li>
+
+                    <li class="download-item">
+                        <div class="file-info">
+                            <h4>Piattaforma ELISA</h4>
+                            <p>Formazione e monitoraggio del bullismo e cyberbullismo - MIUR</p>
+                        </div>
+                        <a href="https://www.piattaformaelisa.it/" target="_blank" class="download-link">Apri Link</a>
+                    </li>
+
+                    <li class="download-item">
+                        <div class="file-info">
+                            <h4>Generazioni Connesse</h4>
+                            <p>Safer Internet Centre Italiano - Sicurezza in Rete</p>
+                        </div>
+                        <a href="https://www.generazioniconnesse.it/" target="_blank" class="download-link">Apri Link</a>
+                    </li>
+
+                    <li class="download-item">
+                        <div class="file-info">
                             <h4>MIUR - Bullismo e Cyberbullismo</h4>
                             <p>Portale ufficiale del Ministero dell'Istruzione e del Merito</p>
                         </div>
@@ -527,7 +584,7 @@
             </div>
         </div>
 
-        <!-- FOOTER AGGIORNATO CON LINK AGID FUNZIONANTE -->
+        <!-- FOOTER -->
         <footer>
             I.S.I.S.S. "Magnaghi - Solari" - Salsomaggiore Terme • Fidenza • Parma<br>
             Contatti: pris006003@istruzione.it | pris006003@pec.istruzione.it
