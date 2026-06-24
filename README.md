@@ -5,7 +5,6 @@ Questo repository ospita l'applicazione web  dedicata alla raccolta e all'invio 
 L'obiettivo della piattaforma è fornire agli studenti, alle famiglie e al personale scolastico uno strumento immediato, riservato e sicuro per comunicare con il Team Antibullismo dell'istituto che provvederà ad accogliere, in prima instanza, le segnalazioni, a gestirle e a filtrarle in base alla gravità. 
 
 
-
 📱 Istruzioni per l'Uso e Consigli Operativi
 
 Per garantire il corretto funzionamento del sistema di invio automatico, si raccomanda di seguire queste linee guida:
@@ -15,4 +14,8 @@ I dispositivi mobili integrano nativamente la gestione dei collegamenti di posta
 
 2. Account Istituzionale: Per l'invio della segnalazione, assicurarsi che sul proprio dispositivo sia configurato e attivo l'account email istituzionale della scuola (es. `utente@magnaghisolari.edu.it` su applicazione Gmail o Outlook).
 
-3. Per gli utenti che usano il PC l'invio tramite il tasto "Invia" funzionerà solo se hanno un client di posta (come Outlook o Mail) impostato come predefinito.
+3. Per gli utenti che usano il PC l'inoltro tramite il tasto "Invia" funzionerà solo se hanno un client di posta (come Outlook o Mail) impostato come predefinito.
+
+Inoltrare eventuali segnalazioni tecnciche o di manfunzionamento del servizio al seguente indirizzo e-mail: team.antibullismo@magnaghisolari.edu.it
+
+Referente web-app: Prof. Scozzari Daniele | email: daniele.scozzari@magnaghisolari.edu.it
