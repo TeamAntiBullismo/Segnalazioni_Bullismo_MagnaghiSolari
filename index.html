@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Antibullismo - ISISS Magnaghi Solari</title>
-    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Team Antibullismo - I.S. Magnaghi-Solari</title>
     <style>
         :root {
-            --colore-giallo: #FFD54F; /* Sfondo principale LOGO.jpg */
-            --colore-rosso: #D32F2F;   /* Pulsanti emergenza e cerchio LOGO.jpg */
-            --colore-blu: #0D47A1;     /* Istituzionale Magnaghi-Solari */
-            --colore-verde: #2E7D32;   /* Istituzionale Magnaghi-Solari */
-            --colore-bianco: #FFFFFF;
-            --colore-grigio: #F5F5F5;
+            --blue-istituzionale: #004693;
+            --yellow-istituzionale: #FFD24D;
+            --green-line: #2E7D32;
+            --red-button: #D32F2F;
+            --red-button-hover: #B71C1C;
+            --text-dark: #333333;
+            --bg-card: #FFFFFF;
         }
 
         * {
@@ -23,138 +23,135 @@
         }
 
         body {
-            background-color: var(--colore-giallo);
-            color: #333;
+            background-color: var(--yellow-istituzionale);
+            color: var(--text-dark);
             line-height: 1.6;
-            padding-bottom: 40px;
+            padding-bottom: 30px;
         }
 
         header {
-            background-color: var(--colore-blu);
-            color: var(--colore-bianco);
+            background-color: var(--blue-istituzionale);
+            color: white;
             text-align: center;
-            padding: 20px 15px;
-            border-bottom: 5px solid var(--colore-verde);
+            padding: 20px 10px;
+            border-bottom: 5px solid var(--green-line);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         header h1 {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             margin-bottom: 5px;
+            letter-spacing: 0.5px;
         }
 
         header p {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             opacity: 0.9;
         }
 
-        header a {
-            color: var(--colore-giallo);
+        header .web-link {
+            color: var(--yellow-istituzionale);
             text-decoration: none;
             font-weight: bold;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #003366;
+            list-style: none;
+        }
+
+        .nav-tabs li {
+            flex: 1;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        .nav-tabs button {
+            width: 100%;
+            background: none;
+            border: none;
+            color: white;
+            padding: 12px 5px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .nav-tabs button.active {
+            background-color: var(--yellow-istituzionale);
+            color: var(--blue-istituzionale);
         }
 
         .container {
-            max-width: 600px;
+            max-width: 750px;
             margin: 20px auto;
             padding: 0 15px;
         }
 
-        .logo-box {
-            background-color: var(--colore-bianco);
+        .card {
+            background: var(--bg-card);
             border-radius: 15px;
-            padding: 15px;
-            text-align: center;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
             margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .logo-placeholder {
-            max-width: 150px;
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            max-width: 180px;
             height: auto;
-            margin-bottom: 10px;
-            border-radius: 50%;
-        }
-
-        .tab-menu {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 12px 5px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            border: none;
             border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .tab-btn.active {
-            background-color: var(--colore-blu);
-            color: var(--colore-bianco);
-        }
-
-        .tab-btn:not(.active) {
-            background-color: var(--colore-bianco);
-            color: var(--colore-blu);
-        }
-
-        .content-section {
-            background-color: var(--colore-bianco);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            display: none;
-        }
-
-        .content-section.active {
-            display: block;
         }
 
         h2 {
-            color: var(--colore-blu);
+            color: var(--blue-istituzionale);
             margin-bottom: 15px;
             font-size: 1.4rem;
-            border-bottom: 2px solid var(--colore-grigio);
+            border-bottom: 2px solid #eeeeee;
             padding-bottom: 5px;
         }
 
-        .support-banner {
-            background-color: #E8F5E9;
-            border-left: 5px solid var(--colore-verde);
-            padding: 15px;
+        p.intro-text {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .note-box {
+            background-color: #f1f8ff;
+            border-left: 4px solid var(--blue-istituzionale);
+            padding: 12px;
+            font-size: 0.85rem;
             border-radius: 4px;
             margin-bottom: 20px;
         }
 
-        .support-banner p {
-            font-size: 0.95rem;
-            margin-bottom: 10px;
-        }
-
-        .btn-mail {
-            display: inline-block;
-            background-color: var(--colore-verde);
-            color: var(--colore-bianco);
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
+        }
+
+        .form-group.row-flex {
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-group.row-flex > div {
+            flex: 1;
         }
 
         label {
             display: block;
-            font-weight: bold;
+            font-weight: 600;
             margin-bottom: 5px;
             font-size: 0.9rem;
         }
@@ -162,236 +159,416 @@
         input[type="text"], input[type="date"], select, textarea {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1rem;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            background-color: #fafafa;
         }
 
-        textarea {
-            resize: vertical;
-            min-height: 100px;
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--blue-istituzionale);
+            background-color: #ffffff;
         }
 
-        .checkbox-group {
-            margin: 10px 0;
+        .radio-box, .checkbox-box {
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
         }
 
-        .checkbox-item {
+        .radio-option, .checkbox-option {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-bottom: 8px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            cursor: pointer;
         }
 
-        .checkbox-item input {
-            width: 18px;
-            height: 18px;
+        .radio-option:last-child, .checkbox-option:last-child {
+            margin-bottom: 0;
         }
 
-        .btn-submit {
+        .radio-option input, .checkbox-option input {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .sub-section {
+            background: #fdfdfd;
+            border: 1px dashed #cbd5e1;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .sub-section h4 {
+            font-size: 0.9rem;
+            color: #475569;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn {
             width: 100%;
-            background-color: var(--colore-rosso);
-            color: var(--colore-bianco);
+            background-color: var(--red-button);
+            color: white;
             border: none;
             padding: 14px;
             font-size: 1.1rem;
             font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .phone-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .phone-btn {
-            background-color: var(--colore-grigio);
-            border: 1px solid #ddd;
-            padding: 12px;
             border-radius: 8px;
-            text-align: center;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .submit-btn:hover {
+            background-color: var(--red-button-hover);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.99);
+        }
+
+        /* Sezione Download */
+        .download-list {
+            list-style: none;
+        }
+
+        .download-item {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 5px;
+            justify-content: space-between;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            transition: background 0.2s;
         }
 
-        .phone-btn span {
-            color: var(--colore-rosso);
-            font-size: 1.1rem;
+        .download-item:hover {
+            background: #f1f5f9;
         }
 
-        .info-step {
-            margin-bottom: 15px;
-            padding-left: 15px;
-            border-left: 3px solid var(--colore-blu);
+        .file-info {
+            flex: 1;
+            padding-right: 15px;
         }
 
-        .info-step strong {
-            color: var(--colore-blu);
+        .file-info h4 {
+            color: var(--blue-istituzionale);
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+        }
+
+        .file-info p {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .download-link {
+            background-color: var(--blue-istituzionale);
+            color: white;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+
+        .download-link:hover {
+            opacity: 0.9;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #555555;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>I.S.I.S.S. "MAGNAGHI - SOLARI"</h1>
+        <h1>I.S. "MAGNAGHI - SOLARI"</h1>
         <p>Salsomaggiore Terme • Fidenza • Parma</p>
-        <p><a href="http://www.magnaghisolari.edu.it" target="_blank">www.magnaghisolari.edu.it</a></p>
+        <a href="http://www.magnaghisolari.edu.it/" target="_blank" class="web-link">www.magnaghisolari.edu.it</a>
     </header>
 
+    <ul class="nav-tabs">
+        <li><button onclick="switchTab('info')" id="tab-info" class="active">Spazio Info</button></li>
+        <li><button onclick="switchTab('segnala')" id="tab-segnala">🚨 Segnala (Mod. 1)</button></li>
+        <li><button onclick="switchTab('download')" id="tab-download">📂 Documenti PDF</button></li>
+    </ul>
+
     <div class="container">
-
-        <div class="logo-box">
-            <img src="LOGO.jpg" alt="Team Antibullismo Logo" class="logo-placeholder">
-            <h3 style="color: var(--colore-blu);">Spazio Informativo e Supporto</h3>
-        </div>
-
-        <div class="tab-menu">
-            <button class="tab-btn active" onclick="switchTab('info')">ℹ️ Info & Aiuto</button>
-            <button class="tab-btn" onclick="switchTab('segnala')">🚨 Segnala (Mod. 1)</button>
-        </div>
-
-        <!-- SEZIONE 1: INFO E ASSISTENZA -->
-        <div id="section-info" class="content-section active">
-            <h2>Richiesta di Supporto e Assistenza</h2>
-            
-            <div class="support-banner">
-                <p>Se hai bisogno di aiuto, chiarimenti, informazioni o desideri ricevere supporto, puoi metterti in contatto con il nostro team dedicato.</p>
-                <a href="mailto:team.antibullismo@magnaghisolari.edu.it?subject=Richiesta%20Assistenza%20e%20Supporto%20-%20Spazio%20Ascolto" class="btn-mail">
-                    ✉️ Scrivi al Team Antibullismo
-                </a>
-            </div>
-
-            <h2>Linee Guida & Informazioni</h2>
-            <div class="info-step">
-                <p><strong>1. Cos'è il Bullismo?</strong> Un'aggressione o molestia ripetuta nel tempo da parte di singoli o gruppi nei confronti di qualcuno, capace di isolare o spaventare la vittima.</p>
-            </div>
-            <div class="info-step">
-                <p><strong>2. Cos'è il Cyberbullismo?</strong> Una forma di sopraffazione virtuale attuata tramite messaggi, social network o chat online, attiva in ogni momento.</p>
-            </div>
-            <div class="info-step">
-                <p><strong>3. Riservatezza Garantita:</strong> La scuola tutela chiunque invii una segnalazione o una richiesta di supporto entro i limiti disposti dalla legge.</p>
-            </div>
-
-            <h2>Numeri Utili Nazionali</h2>
-            <div class="phone-grid">
-                <a href="tel:800669696" class="phone-btn"><span>800.66.96.96</span>Linea Antibullismo</a>
-                <a href="tel:19696" class="phone-btn"><span>1.96.96</span>Telefono Azzurro</a>
-                <a href="tel:114" class="phone-btn"><span>114</span>Emergenza Infanzia</a>
-                <a href="tel:112" class="phone-btn"><span>112</span>Pronto Intervento</a>
+        
+        <div id="content-info" class="tab-content active">
+            <div class="card">
+                <div class="logo-container">
+                    <img src="LOGO.jpg" alt="Team Antibullismo Logo">
+                </div>
+                <h2>Spazio Informativo e Supporto</h2>
+                <p class="intro-text">
+                    Il Team Antibullismo dell'I.S. "Magnaghi-Solari" opera attivamente in tutti i plessi dell'istituto per prevenire, contrastare e gestire dinamiche di disagio, comportamenti aggressivi o atti riconducibili al bullismo e cyberbullismo. Il nostro obiettivo prioritario è garantire a ogni studente un ambiente sereno, inclusivo e sicuro.
+                </p>
+                <div class="note-box">
+                    <strong>Plessi e strutture dell'Istituto:</strong><br>
+                    • Sede Centrale e Succursale - Salsomaggiore Terme (PR)<br>
+                    • I.P.S.A.S.R. "Solari" - Fidenza (PR)<br>
+                    • Succursale - Parma<br>
+                    • Azienda Agraria ISISS & L.T.O. "Food Farm 4.0"
+                </div>
             </div>
         </div>
 
-        <!-- SEZIONE 2: FORM DI SEGNALAZIONE (MODULO 1) -->
-        <div id="section-segnala" class="content-section">
-            <h2>Modulo 1 - Segnalazione Caso</h2>
-            <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">
-                Usa questo form digitale per segnalare in modo sicuro atti offensivi o di esclusione verificatisi a scuola, nel tragitto o sui canali online.
-            </p>
-
-            <form id="formSegnalazione" onsubmit="inviaSegnalazioneViaMail(event)">
-                <div class="form-group">
-                    <label for="dataInput">Data dell'episodio o della segnalazione:</label>
-                    <input type="date" id="dataInput" required>
+        <div id="content-segnala" class="tab-content">
+            <div class="card">
+                <h2>MODULO 1: Segnalazione Presunto Caso</h2>
+                <p class="intro-text">
+                    Usa questo modulo per segnalare comportamenti offensivi, aggressioni fisiche, prese in giro, isolamento dal gruppo che si sono verificati tra gli alunni a scuola, nel tragitto casa-scuola, sui social network o tramite messaggi e giochi online.
+                </p>
+                
+                <div class="note-box">
+                    <strong>Massima Riservatezza:</strong> Si garantisce la riservatezza di colui che fa la segnalazione entro i limiti disposti dalla legge. È consigliato fornire il maggior numero di dettagli per consentire alla scuola di intervenire efficacemente.
                 </div>
 
-                <div class="form-group">
-                    <label for="plessoSelect">Plesso Scolastico coinvolto:</label>
-                    <select id="plessoSelect" required>
-                        <option value="">-- Seleziona il Plesso --</option>
-                        <option value="Salsomaggiore Terme - Sede centrale">Salsomaggiore Terme - Sede centrale</option>
-                        <option value="Salsomaggiore Terme - Succursale">Salsomaggiore Terme - Succursale</option>
-                        <option value="Fidenza - Solari">Fidenza - Solari</option>
-                        <option value="Parma - Succursale">Parma - Succursale</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="ruoloSelect">Chi compila la segnalazione è:</label>
-                    <select id="ruoloSelect" required>
-                        <option value="">-- Seleziona il ruolo --</option>
-                        <option value="La presunta vittima">La presunta vittima</option>
-                        <option value="Un compagno della presunta vittima">Un compagno della presunta vittima</option>
-                        <option value="Un genitore/tutore">Un genitore/tutore</option>
-                        <option value="Un insegnante">Un insegnante</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Tipo di comportamento riscontrato:</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-item"><input type="checkbox" class="tipoEpisodio" value="Aggressioni fisiche / Spintoni"> Aggressioni fisiche / Spintoni</label>
-                        <label class="checkbox-item"><input type="checkbox" class="tipoEpisodio" value="Prese in giro / Offese verbali"> Prese in giro / Offese verbali</label>
-                        <label class="checkbox-item"><input type="checkbox" class="tipoEpisodio" value="Isolamento dal gruppo / Esclusione"> Isolamento dal gruppo / Esclusione</label>
-                        <label class="checkbox-item"><input type="checkbox" class="tipoEpisodio" value="Cyberbullismo (Social, WhatsApp, Giochi online)"> Cyberbullismo (Social, WhatsApp, online)</label>
+                <form id="bullyForm" onsubmit="sendEmail(event)">
+                    
+                    <div class="form-group row-flex">
+                        <div>
+                            <label for="segnalatore_nome">Nome di chi compila *</label>
+                            <input type="text" id="segnalatore_nome" required placeholder="Tuo nome e cognome">
+                        </div>
+                        <div>
+                            <label for="data_accaduto">Data di compilazione *</label>
+                            <input type="date" id="data_accaduto" required>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label for="descrizioneText">Descrivi brevemente cosa è accaduto:</label>
-                    <textarea id="descrizioneText" placeholder="Inserisci qui i dettagli utili (es. luoghi, frequenza degli episodi...)" required></textarea>
-                </div>
+                    <div class="form-group">
+                        <label for="scuola_plesso">Scuola / Plesso *</label>
+                        <select id="scuola_plesso" required>
+                            <option value="">-- Seleziona il Plesso --</option>
+                            <option value="Sede centrale - Salsomaggiore Terme">Sede centrale - Salsomaggiore Terme</option>
+                            <option value="Succursale - Salsomaggiore Terme">Succursale - Salsomaggiore Terme</option>
+                            <option value="I.P.S.A.S.R. Solari - Fidenza">I.P.S.A.S.R. "Solari" - Fidenza</option>
+                            <option value="Succursale - Parma">Succursale - Parma</option>
+                            <option value="Food Farm 4.0 / Azienda Agraria">Food Farm 4.0 / Azienda Agraria</option>
+                        </select>
+                    </div>
 
-                <button type="submit" class="btn-submit">Invia Segnalazione al Team</button>
-            </form>
+                    <div class="form-group">
+                        <label>1. La persona che segnala il caso è: *</label>
+                        <div class="radio-box">
+                            <label class="radio-option"><input type="radio" name="ruolo_segnalatore" value="La presunta vittima" required> La presunta vittima</label>
+                            <label class="radio-option"><input type="radio" name="ruolo_segnalatore" value="Un compagno della presunta vittima"> Un compagno della presunta vittima</label>
+                            <label class="radio-option"><input type="radio" name="ruolo_segnalatore" value="Madre/Padre/Tutore della presunta vittima"> Madre/Padre/Tutore della presunta vittima</label>
+                            <label class="radio-option"><input type="radio" name="ruolo_segnalatore" value="Insegnante"> Insegnante</label>
+                            <label class="radio-option"><input type="radio" name="ruolo_segnalatore" value="Altri"> Altri</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>2. Presunta Vittima / Vittime</label>
+                        <div class="sub-section">
+                            <h4>Prima Presunta Vittima</h4>
+                            <div class="row-flex" style="margin-bottom: 8px;">
+                                <input type="text" id="vittima1_nome" placeholder="Nome e Cognome">
+                                <input type="text" id="vittima1_classe" placeholder="Classe/Sezione" style="max-width: 150px;">
+                            </div>
+                            <h4>Altre presunte vittime</h4>
+                            <div class="row-flex" style="margin-bottom: 8px;">
+                                <input type="text" id="vittima2_nome" placeholder="Seconda vittima (Nome)">
+                                <input type="text" id="vittima2_classe" placeholder="Classe" style="max-width: 150px;">
+                            </div>
+                            <div class="row-flex">
+                                <input type="text" id="vittima3_nome" placeholder="Terza vittima (Nome)">
+                                <input type="text" id="vittima3_classe" placeholder="Classe" style="max-width: 150px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>3. Bullo o bulli (o presunti)</label>
+                        <div class="sub-section">
+                            <div class="row-flex" style="margin-bottom: 8px;">
+                                <input type="text" id="bullo1_nome" placeholder="Nome del presunto bullo">
+                                <input type="text" id="bullo1_classe" placeholder="Classe" style="max-width: 150px;">
+                            </div>
+                            <div class="row-flex" style="margin-bottom: 8px;">
+                                <input type="text" id="bullo2_nome" placeholder="Secondo presunto bullo">
+                                <input type="text" id="bullo2_classe" placeholder="Classe" style="max-width: 150px;">
+                            </div>
+                            <div class="row-flex">
+                                <input type="text" id="bullo3_nome" placeholder="Terzo presunto bullo">
+                                <input type="text" id="bullo3_classe" placeholder="Classe" style="max-width: 150px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>4. Erano presenti altre pessoas (Testimoni)?</label>
+                        <div class="checkbox-box" style="margin-bottom: 8px;">
+                            <label class="checkbox-option"><input type="checkbox" id="testimoni_presenti" onchange="toggleTestimoni(this)"> SÌ (Se sì, inserisci i nomi sotto)</label>
+                        </div>
+                        <input type="text" id="testimoni_nomi" placeholder="Nomi delle persone presenti" disabled style="background-color: #e2e8f0;">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="accaduto_testo">5. Breve presentazione dell'accaduto *</label>
+                        <textarea id="accaduto_testo" rows="4" required placeholder="Descrivi cosa è successo, dove e come..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="frequenza_episodi">6. Quante volte sono successi gli episodi? *</label>
+                        <input type="text" id="frequenza_episodi" required placeholder="Es: Episodio isolato, succede ogni giorno, qualche volta alla settimana...">
+                    </div>
+
+                    <button type="submit" class="submit-btn">INVIA SEGNALAZIONE AL TEAM 🚨</button>
+                </form>
+            </div>
         </div>
 
+        <div id="content-download" class="tab-content">
+            <div class="card">
+                <h2>Documenti e Modulistica PDF</h2>
+                <p class="intro-text" style="margin-bottom: 20px;">
+                    In questa sezione è possibile scaricare la documentazione ufficiale d'Istituto trasmessa con la Circolare N. 57i per la consultazione o la compilazione manuale.
+                </p>
+                
+                <ul class="download-list">
+                    <li class="download-item">
+                        <div class="file-info">
+                            <h4>Circ. N. 573 - Vademecum Gestione Presunti Atti</h4>
+                            <p>Documento e linee guida ufficiali firmate digitalmente (05/05/2026)</p>
+                        </div>
+                        <a href="N._573_-_VADEMECUM_PER_LA_GESTIONE_di_PRESUNTI_ATTI_DI_BULLISMO-CYBERBULLISMO_signed.pdf" download class="download-link">Scarica PDF</a>
+                    </li>
+                    
+                    <li class="download-item">
+                        <div class="file-info">
+                            <h4>Codice di Intervento Anti-Bullismo e Cyberbullismo</h4>
+                            <p>Delibera del Consiglio di Istituto N. 144/2023-2026</p>
+                        </div>
+                        <a href="CODICE DI INTERVENTO ANTIBULLISMO-CYBERBULLISMO ISISS MAGNAGHI SOLARI_1.pdf" download class="download-link">Scarica PDF</a>
+                    </li>
+
+                    <li class="download-item">
+                        <div class="file-info">
+                            <h4>Modulo 1 - Scheda di Segnalazione Caso</h4>
+                            <p>Modello cartaceo ufficiale d'istituto per la segnalazione</p>
+                        </div>
+                        <a href="MODULO 1 segnalazione.pdf" download class="download-link">Scarica PDF</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            I.S. "Magnaghi - Solari" - Salsomaggiore Terme • Fidenza • Parma<br>
+            Contatti: pris006003@istruzione.it | pris006003@pec.istruzione.it
+        </footer>
     </div>
 
     <script>
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tabs button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            document.getElementById('content-' + tabId).classList.add('active');
+            document.getElementById('tab-' + tabId).classList.add('active');
+        }
 
-            if (tabName === 'info') {
-                document.querySelectorAll('.tab-btn')[0].classList.add('active');
-                document.getElementById('section-info').classList.add('active');
-            } else if (tabName === 'segnala') {
-                document.querySelectorAll('.tab-btn')[1].classList.add('active');
-                document.getElementById('section-segnala').classList.add('active');
+        function toggleTestimoni(checkbox) {
+            const inputNomi = document.getElementById('testimoni_nomi');
+            if (checkbox.checked) {
+                inputNomi.disabled = false;
+                inputNomi.style.backgroundColor = "#fafafa";
+                inputNomi.required = true;
+            } else {
+                inputNomi.disabled = true;
+                inputNomi.style.backgroundColor = "#e2e8f0";
+                inputNomi.value = "";
+                inputNomi.required = false;
             }
         }
 
-        function inviaSegnalazioneViaMail(event) {
+        function sendEmail(event) {
             event.preventDefault();
-
-            const data = document.getElementById('dataInput').value;
-            const plesso = document.getElementById('plessoSelect').value;
-            const ruolo = document.getElementById('ruoloSelect').value;
-            const descrizione = document.getElementById('descrizioneText').value;
-
-            let tipiSelezionati = [];
-            document.querySelectorAll('.tipoEpisodio:checked').forEach(cb => {
-                tipiSelezionati.push(cb.value);
-            });
-            const comportamenti = tipiSelezionati.length > 0 ? tipiSelezionati.join(', ') : 'Non specificato';
-
-            const emailDestinatario = "team.antibullismo@magnaghisolari.edu.it";
-            const oggetto = encodeURIComponent("Modulo 1 - Nuova Segnalazione Presunto Caso");
             
-            let corpoMail = `MODULO 1 - SEGNALAZIONE CASO DI BULLISMO / CYBERBULLISMO\n`;
-            corpoMail += `==================================================\n\n`;
-            corpoMail += `Data dell'episodio: ${data}\n`;
-            corpoMail += `Plesso Scolastico: ${plesso}\n`;
-            corpoMail += `Segnalazione inviata da: ${ruolo}\n`;
-            corpoMail += `Tipologia di comportamenti: ${comportamenti}\n\n`;
-            corpoMail += `DESCRIZIONE DELL'ACCADUTO:\n`;
-            corpoMail += `${descrizione}\n\n`;
-            corpoMail += `==================================================\n`;
-            corpoMail += `Inviato tramite Applicazione Team Antibullismo.`;
+            const segnalatore = document.getElementById('segnalatore_nome').value;
+            const data = document.getElementById('data_accaduto').value;
+            const plesso = document.getElementById('scuola_plesso').value;
+            const ruolo = document.querySelector('input[name="ruolo_segnalatore"]:checked').value;
+            
+            const vit1_n = document.getElementById('vittima1_nome').value || "Non specificato";
+            const vit1_c = document.getElementById('vittima1_classe').value || "-";
+            const vit2_n = document.getElementById('vittima2_nome').value || "";
+            const vit2_c = document.getElementById('vittima2_classe').value || "";
+            const vit3_n = document.getElementById('vittima3_nome').value || "";
+            const vit3_c = document.getElementById('vittima3_classe').value || "";
+            
+            const bul1_n = document.getElementById('bullo1_nome').value || "Non specificato";
+            const bul1_c = document.getElementById('bullo1_classe').value || "-";
+            const bul2_n = document.getElementById('bullo2_nome').value || "";
+            const bul2_c = document.getElementById('bullo2_classe').value || "";
+            const bul3_n = document.getElementById('bullo3_nome').value || "";
+            const bul3_c = document.getElementById('bullo3_classe').value || "";
+            
+            const testimoniCheck = document.getElementById('testimoni_presenti').checked ? "SÌ" : "NO";
+            const testimoniNomi = document.getElementById('testimoni_nomi').value || "-";
+            
+            const accaduto = document.getElementById('accaduto_testo').value;
+            const frequenza = document.getElementById('frequenza_episodi').value;
 
-            const corpoMailFormattato = encodeURIComponent(corpoMail);
-            window.location.href = `mailto:${emailDestinatario}?subject=${oggetto}&body=${corpoMailFormattato}`;
+            const emailTo = "team.antibullismo@magnaghisolari.edu.it";
+            const subject = encodeURIComponent("SEGNALAZIONE MODULO 1 - " + plesso);
+            
+            let body = `MODULO 1 - SEGNALAZIONE CASO DI BULLISMO/COMPORTAMENTI AGGRESSIVI\n`;
+            body += `---------------------------------------------------------\n`;
+            body += `Compilato da: ${segnalatore}\n`;
+            body += `Data: ${data}\n`;
+            body += `Plesso Scolastico: ${plesso}\n`;
+            body += `Il segnalatore è: ${ruolo}\n\n`;
+            body += `2. PRESUNTA VITTIMA/E:\n`;
+            body += ` - Nome: ${vit1_n} | Classe: ${vit1_c}\n`;
+            if(vit2_n) body += ` - Nome: ${vit2_n} | Classe: ${vit2_c}\n`;
+            if(vit3_n) body += ` - Nome: ${vit3_n} | Classe: ${vit3_c}\n`;
+            body += `\n3. PRESUNTO/I BULLO/I:\n`;
+            body += ` - Nome: ${bul1_n} | Classe: ${bul1_c}\n`;
+            if(bul2_n) body += ` - Nome: ${bul2_n} | Classe: ${bul2_c}\n`;
+            if(bul3_n) body += ` - Nome: ${bul3_n} | Classe: ${bul3_c}\n`;
+            body += `\n4. TESTIMONI PRESENTI: ${testimoniCheck}\n`;
+            if(testimoniCheck === "SÌ") body += ` Nomi testimoni: ${testimoniNomi}\n`;
+            body += `\n5. PRESENTAZIONE DELL'ACCADUTO:\n${accaduto}\n\n`;
+            body += `6. FREQUENZA EPISODI:\n${frequenza}\n`;
+            body += `---------------------------------------------------------\n`;
+            body += `Nota: Questo invio costituisce firma e convalida dei dati inseriti.`;
+
+            const mailtoLink = `mailto:${emailTo}?subject=${subject}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
         }
     </script>
 </body>
