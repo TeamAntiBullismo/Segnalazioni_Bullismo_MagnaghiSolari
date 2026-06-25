@@ -41,20 +41,47 @@
         header {
             background-color: var(--blue-istituzionale);
             color: white;
-            text-align: center;
-            padding: 20px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
             border-bottom: 5px solid var(--green-line);
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
+        .header-text {
+            text-align: left;
+            flex: 1;
+        }
+
         header h1 {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             margin-bottom: 5px;
             letter-spacing: 0.5px;
         }
 
         header p {
-            font-size: 0.95rem;
+            font-size: 0.90rem;
+            opacity: 0.9;
+        }
+
+        /* Pulsante Condividi in Header */
+        #shareBtn {
+            background-color: var(--yellow-istituzionale);
+            color: var(--blue-istituzionale);
+            border: none;
+            padding: 10px 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            margin-left: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: opacity 0.2s;
+        }
+
+        #shareBtn:hover {
             opacity: 0.9;
         }
 
@@ -406,8 +433,11 @@
 <body>
 
     <header>
-        <h1>🚨 Portale Segnalazioni - Casi di presunto Bullismo e Cyberbullismo</h1>
-        <p>I.S.I.S.S. "Magnaghi-Solari" • Salsomaggiore Terme • Parma • Fidenza</p>
+        <div class="header-text">
+            <h1>🚨 Portale Segnalazioni - Casi di presunto Bullismo e Cyberbullismo</h1>
+            <p>I.S.I.S.S. "Magnaghi-Solari" • Salsomaggiore Terme • Parma • Fidenza</p>
+        </div>
+        <button id="shareBtn">📢 Condividi</button>
     </header>
 
     <ul class="nav-tabs">
@@ -434,7 +464,7 @@
                 <div class="instruction-box">
                     <h3>📱 Istruzioni per l'Uso e Installazione</h3>
                     <ol>
-                        <li><strong>Installa sul tuo Dispositivo:</strong> Puoi installare questo portale come un'app sul telefono o PC! Clicca sui tre puntini del browser (o l'icona "+" nella barra degli indirizzi) e seleziona <strong>"Aggiungi a schermata Home"</strong> o <strong>"Installa app"</strong>.</li>
+                        <li><strong>Installa sul tuo Dispositivo:</strong> Puoi installare questo portale como un'app sul telefono o PC! Clicca sui tre puntini del browser (o l'icona "+" nella barra degli indirizzi) e seleziona <strong>"Aggiungi a schermata Home"</strong> o <strong>"Installa app"</strong>.</li>
                         <li><strong>Account Istituzionale:</strong> Per l'invio della segnalazione, assicurarsi che sul proprio dispositivo sia configurato e attivo l'account email istituzionale della scuola.</li>
                         <li><strong>Due modalità di segnalazione:</strong> È possibile utilizzare la sezione SEGNALA (MOD.1) per un rapido invio digitale compilando il form. In alternativa, nella sezione Documenti e Link è disponibile il modello cartaceo ufficiale.</li>
                     </ol>
@@ -635,6 +665,8 @@
                 <a href="https://www.magnaghisolari.edu.it/privacy" target="_blank">Informativa Privacy</a>
                 <a href="https://www.magnaghisolari.edu.it/note-legali" target="_blank">Note legali</a>
                 <a href="https://form.agid.gov.it/ismpr/www_magnaghisolari_edu_it/dichiarazione" target="_blank">Dichiarazione di accessibilità</a>
+                <!-- Link al Sito Desk del Portale richiesto -->
+                <a href="https://teamantibullismo.github.io/Segnalazioni_Bullismo_MagnaghiSolari/" target="_blank" style="color: var(--red-button); font-weight: bold;">💻 Vai al Sito Desk del Portale</a>
             </div>
             <div class="github-footer-box">
                 🛠️ <a href="https://github.com/teamantibullismo/team-antibullismo/blob/main/README.md" target="_blank">README.md del Progetto</a>: Consulta la documentazione tecnica e le note di sviluppo direttamente sul repository.
@@ -730,8 +762,26 @@
             window.location.href = mailtoLink;
         }
 
+        // Script Pulsante Condividi Interno
+        const shareBtn = document.getElementById('shareBtn');
+        if (navigator.share) {
+            shareBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.share({
+                        title: 'Portale Segnalazioni - Casi di presunto Bullismo e Cyberbullismo',
+                        text: 'Accedi al portale ufficiale di segnalazione dell\'I.S.I.S.S. Magnaghi-Solari.',
+                        url: window.location.href
+                    });
+                } catch (err) { console.log('Condivisione annullata', err); }
+            });
+        } else {
+            shareBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Link del portale copiato negli appunti! Ora puoi condividerlo.');
+            });
+        }
+
         // --- ATTIVAZIONE PWA ---
-        // Registra il Service Worker per fare funzionare l'app in modalità standalone offline
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js')
@@ -740,30 +790,5 @@
             });
         }
     </script>
-    <script>
-    const shareBtn = document.getElementById('shareBtn');
-
-    if (navigator.share) {
-        // Se il browser supporta la condivisione nativa (smartphone)
-        shareBtn.addEventListener('click', async () => {
-            try {
-                await navigator.share({
-                    title: 'Portale Antibullismo - Magnaghi Solari',
-                    text: 'Accedi al portale della squadra antibullismo del nostro Istituto.',
-                    url: window.location.href // Condivide il link corrente dell'app
-                });
-                console.log('Condiviso con successo!');
-            } catch (err) {
-                console.log('Errore o condivisione annullata:', err);
-            }
-        });
-    } else {
-        // Soluzione di riserva se aperto da PC desktop (dove navigator.share spesso non è supportato)
-        shareBtn.addEventListener('click', () => {
-            navigator.clipboard.writeText(window.location.href);
-            alert('Link del portale copiato negli appunti! Ora puoi incollarlo dove vuoi.');
-        });
-    }
-</script>
 </body>
 </html>
