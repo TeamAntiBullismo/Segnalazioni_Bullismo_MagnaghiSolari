@@ -22,6 +22,30 @@
             margin: 0;
         }
 
+        /* Barra di navigazione superiore */
+        .navbar {
+            background-color: var(--blue-istituzionale);
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            margin: 0 5px;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        .navbar a.active {
+            background-color: var(--yellow-istituzionale);
+            color: var(--text-dark);
+        }
+
         .container {
             max-width: 600px;
             margin: 20px auto;
@@ -76,7 +100,7 @@
             height: 100px;
         }
 
-        .radio-box, .checkbox-box {
+        .radio-box {
             border: 1px dashed #ccc;
             padding: 12px;
             border-radius: 4px;
@@ -126,6 +150,12 @@
 </head>
 <body>
 
+<div class="navbar">
+    <a href="#">Spazio Info</a>
+    <a href="#" class="active">📝 Segnala (Mod. 1)</a>
+    <a href="#">📁 Documenti e Link</a>
+</div>
+
 <div class="container">
     <header>
         <h2>MODULO 1: Scheda di Segnalazione Caso</h2>
@@ -154,7 +184,7 @@
             <label for="scuolaPlesso">Scuola / Plesso *</label>
             <select id="scuolaPlesso" required>
                 <option value="">-- Seleziona il Plesso --</option>
-                <option value="maganghi">Magnaghi</option>
+                <option value="magnaghi">Magnaghi</option>
                 <option value="solari">Solari</option>
             </select>
         </div>
@@ -204,7 +234,7 @@
             <input type="text" id="frequenzaEpisodi" placeholder="Es: Episodio isolato, succede ogni giorno..." required>
         </div>
 
-        <button type="submit" id="inviaSegnalazioneBtn" class="btn-invia">Invia Segnalazione 📩</button>
+        <button type="submit" id="inviaSegnalazioneBtn" class="btn-invia">Invia Segnalazione 🚨</button>
     </form>
 
     <div class="emergency-footer">
@@ -218,22 +248,15 @@
 </div>
 
 <script>
-// Funzione per calcolare la gravità (Triage) della segnalazione
 function calcolaTriageSegnalazione() {
     let punteggio = 0;
     let forzaRosso = false;
 
-    // 1. PARAMETRO: Chi segnala (Ruolo)
     const chiSegnala = document.querySelector('input[name="ruolo_segnalatore"]:checked')?.value;
-    if (chiSegnala === "insegnante") {
-        punteggio += 3;
-    } else if (chiSegnala === "vittima" || chiSegnala === "genitore") {
-        punteggio += 2;
-    } else {
-        punteggio += 1;
-    }
+    if (chiSegnala === "insegnante") punteggio += 3;
+    else if (chiSegnala === "vittima" || chiSegnala === "genitore") punteggio += 2;
+    else punteggio += 1;
 
-    // 2. PARAMETRO: Frequenza (Riquadro 6)
     const testoFrequenza = document.getElementById('frequenzaEpisodi').value.toLowerCase();
     if (testoFrequenza.includes("giorno") || testoFrequenza.includes("sistematico") || testoFrequenza.includes("sempre") || testoFrequenza.includes("quotidiano")) {
         punteggio += 5;
@@ -243,9 +266,7 @@ function calcolaTriageSegnalazione() {
         punteggio += 1;
     }
 
-    // 3. PARAMETRO: Deduzione della tipologia dal Testo (Riquadro 5)
     const testoDescrizione = document.getElementById('descrizioneAccaduto').value.toLowerCase();
-
     const paroleGiallo = ["insulti", "offese", "mi escludono", "isolato", "prendono in giro", "denigrazione", "presa in giro", "escluso"];
     const paroleRosso = ["foto", "video", "instagram", "tiktok", "chat", "whatsapp", "ricatto", "minaccia", "botte", "calci", "pugni", "soldi", "estorsione", "social", "pubblicato"];
 
@@ -253,11 +274,8 @@ function calcolaTriageSegnalazione() {
     if (haParoleGiallo) punteggio += 3;
 
     let haParoleRosso = paroleRosso.some(parola => testoDescrizione.includes(parola));
-    if (haParoleRosso) {
-        forzaRosso = true; // Il Cyberbullismo o la violenza forzano sempre il Codice Rosso
-    }
+    if (haParoleRosso) forzaRosso = true;
 
-    // 4. VERDETTO FINALE
     let codiceColore = "";
     let azioni = "";
 
@@ -272,32 +290,20 @@ function calcolaTriageSegnalazione() {
         azioni = "Mediazione: monitoraggio discreto e risoluzione del conflitto ordinario.";
     }
 
-    return {
-        punteggio: punteggio,
-        colore: codiceColore,
-        indicazioni: azioni
-    };
+    return { punteggio: punteggio, colore: codiceColore, indicazioni: azioni };
 }
 
-// Gestione dell'invio del modulo
 document.getElementById('segnalazioneForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Blocca l'invio nativo per processare il triage
-    
-    // Esegue il calcolo
+    e.preventDefault();
     const esitoTriage = calcolaTriageSegnalazione();
     
-    // Mostra l'esito (Sostituire questo alert con l'invio effettivo al server/email)
     alert(
         "SEGNALAZIONE INVIATA CON SUCCESSO!\n\n" +
         "Filtro di Triage Interno:\n" +
         "Livello calcolato: " + esitoTriage.colore + "\n" +
         "Azione: " + esitoTriage.indicazioni
     );
-    
-    // Qui puoi inserire la tua chiamata fetch/database per registrare la segnalazione salvando anche esitoTriage.colore
-    // this.submit(); // Scommentare per inviare normalmente se usi un action PHP o simili
 });
 </script>
-
 </body>
 </html>
