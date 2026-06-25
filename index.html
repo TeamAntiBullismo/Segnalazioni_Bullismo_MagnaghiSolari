@@ -3,307 +3,792 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modulo 1: Scheda di Segnalazione Caso</title>
+    <title>Portale Segnalazioni - I.S.I.S.S. Magnaghi-Solari</title>
+    <link rel="icon" type="image/png" href="logo-icona.png">
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#004693">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="logo-icona.png">
+
     <style>
         :root {
-            --yellow-istituzionale: #ffcc00;
-            --blue-istituzionale: #004488;
+            --blue-istituzionale: #004693;
+            --yellow-istituzionale: #FFD24D;
+            --green-line: #2E7D32;
+            --red-button: #D32F2F;
+            --red-button-hover: #B71C1C;
             --text-dark: #333333;
-            --gray-light: #f4f4f4;
-            --red-emergency: #cc3333;
+            --bg-card: #FFFFFF;
+            --slate-gray: #475569;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
             background-color: var(--yellow-istituzionale);
             color: var(--text-dark);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             padding-bottom: 30px;
-            margin: 0;
         }
 
-        /* Barra di navigazione superiore */
-        .navbar {
+        header {
             background-color: var(--blue-istituzionale);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 5px solid var(--green-line);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header-text {
+            text-align: left;
+            flex: 1;
+        }
+
+        header h1 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            font-size: 0.90rem;
+            opacity: 0.9;
+        }
+
+        /* Pulsante Condividi in Header */
+        #shareBtn {
+            background-color: var(--yellow-istituzionale);
+            color: var(--blue-istituzionale);
+            border: none;
+            padding: 10px 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            margin-left: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: opacity 0.2s;
+        }
+
+        #shareBtn:hover {
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
             display: flex;
             justify-content: center;
-            padding: 10px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background-color: #003366;
+            list-style: none;
         }
 
-        .navbar a {
+        .nav-tabs li {
+            flex: 1;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        .nav-tabs button {
+            width: 100%;
+            background: none;
+            border: none;
             color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            margin: 0 5px;
-            font-weight: bold;
-            font-size: 14px;
-            border-radius: 4px;
+            padding: 12px 5px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
         }
 
-        .navbar a.active {
+        .nav-tabs button.active {
             background-color: var(--yellow-istituzionale);
-            color: var(--text-dark);
+            color: var(--blue-istituzionale);
         }
 
         .container {
-            max-width: 600px;
+            max-width: 750px;
             margin: 20px auto;
-            background: #ffffff;
-            padding: 20px;
+            padding: 0 15px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            max-width: 180px;
+            height: auto;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
-        header h2 {
+        h2 {
             color: var(--blue-istituzionale);
-            border-bottom: 3px solid var(--yellow-istituzionale);
-            padding-bottom: 8px;
-            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            border-bottom: 2px solid #eeeeee;
+            padding-bottom: 5px;
         }
 
-        .intro-text {
-            font-size: 14px;
+        p.intro-text {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
             text-align: justify;
         }
 
-        .alert-box {
-            background-color: #e6f2ff;
-            border-left: 5px solid var(--blue-istituzionale);
-            padding: 10px;
-            font-size: 13px;
+        .note-box {
+            background-color: #f1f8ff;
+            border-left: 4px solid var(--blue-istituzionale);
+            padding: 12px;
+            font-size: 0.85rem;
+            border-radius: 4px;
             margin-bottom: 20px;
+        }
+
+        .instruction-box {
+            background-color: #fffde7;
+            border-left: 4px solid #fbc02d;
+            padding: 15px;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .instruction-box h3 {
+            font-size: 1rem;
+            color: #f57f17;
+            margin-bottom: 8px;
+        }
+
+        .instruction-box ol {
+            margin-left: 20px;
+        }
+
+        .instruction-box li {
+            margin-bottom: 6px;
+        }
+
+        .emergency-box {
+            background-color: #ffebee;
+            border-left: 4px solid var(--red-button);
+            padding: 15px;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        .emergency-box h3 {
+            font-size: 1rem;
+            color: var(--red-button-hover);
+            margin-bottom: 8px;
+        }
+
+        .emergency-box ul {
+            margin-left: 20px;
+            list-style-type: square;
+        }
+
+        .emergency-box li {
+            margin-bottom: 4px;
         }
 
         .form-group {
             margin-bottom: 18px;
         }
 
+        .form-group.row-flex {
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-group.row-flex > div {
+            flex: 1;
+        }
+
         label {
             display: block;
-            font-weight: bold;
+            font-weight: 600;
             margin-bottom: 5px;
-            font-size: 14px;
+            font-size: 0.9rem;
         }
 
         input[type="text"], input[type="date"], select, textarea {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 14px;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            background-color: #fafafa;
         }
 
-        textarea {
-            resize: vertical;
-            height: 100px;
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--blue-istituzionale);
+            background-color: #ffffff;
         }
 
-        .radio-box {
-            border: 1px dashed #ccc;
-            padding: 12px;
-            border-radius: 4px;
-            background: var(--gray-light);
+        .radio-box, .checkbox-box {
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
         }
 
-        .radio-option {
+        .radio-option, .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             margin-bottom: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
         }
 
-        .radio-option:last-child {
+        .radio-option:last-child, .checkbox-option:last-child {
             margin-bottom: 0;
         }
 
-        .btn-invia {
-            background-color: var(--red-emergency);
+        .radio-option input, .checkbox-option input {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .radio-inline-group {
+            display: flex;
+            gap: 20px;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .sub-section {
+            background: #fdfdfd;
+            border: 1px dashed #cbd5e1;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .sub-section h4 {
+            font-size: 0.9rem;
+            color: var(--slate-gray);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: var(--red-button);
             color: white;
             border: none;
             padding: 14px;
-            width: 100%;
-            font-size: 16px;
+            font-size: 1.1rem;
             font-weight: bold;
+            border-radius: 8px;
             cursor: pointer;
-            border-radius: 4px;
-            text-transform: uppercase;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .submit-btn:hover {
+            background-color: var(--red-button-hover);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.99);
+        }
+
+        .download-list {
+            list-style: none;
+        }
+
+        .download-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
             transition: background 0.2s;
         }
 
-        .btn-invia:hover {
-            background-color: #b32424;
+        .download-item:hover {
+            background: #f1f5f9;
         }
 
-        .emergency-footer {
-            background-color: #ffe6e6;
-            border: 1px solid #ffcccc;
-            padding: 12px;
-            border-radius: 4px;
-            margin-top: 20px;
-            font-size: 13px;
+        .file-info {
+            flex: 1;
+            padding-right: 15px;
         }
 
-        .emergency-footer ul {
-            margin: 5px 0 0 0;
-            padding-left: 20px;
+        .file-info h4 {
+            color: var(--blue-istituzionale);
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+        }
+
+        .file-info p {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .download-link {
+            background-color: var(--blue-istituzionale);
+            color: white;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+
+        .download-link:hover {
+            opacity: 0.9;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #444444;
+            margin-top: 30px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-top: 20px;
+        }
+
+        .social-support-text {
+            margin: 12px 0;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: var(--blue-istituzionale);
+            letter-spacing: 0.3px;
+        }
+
+        .footer-links {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .footer-links a {
+            color: #003366;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .github-footer-box {
+            margin-top: 15px;
+            font-size: 0.75rem;
+            color: #555555;
+        }
+        
+        .github-footer-box a {
+            color: #24292e;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .github-footer-box a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-<div class="navbar">
-    <a href="#">Spazio Info</a>
-    <a href="#" class="active">📝 Segnala (Mod. 1)</a>
-    <a href="#">📁 Documenti e Link</a>
-</div>
-
-<div class="container">
     <header>
-        <h2>MODULO 1: Scheda di Segnalazione Caso</h2>
+        <div class="header-text">
+            <h1>🚨 Portale Segnalazioni Casi di presunto Bullismo e Cyberbullismo</h1>
+            <p>I.S.I.S.S. "Magnaghi-Solari" • Salsomaggiore Terme • Parma • Fidenza</p>
+        </div>
+    <!-- <button id=shareBtn>📢 Condividi</button> -->
     </header>
 
-    <p class="intro-text">
-        Usa questo modulo per segnalare in prima persona (se sei la vittima), o per conto di terzi, comportamenti offensivi, aggressioni fisiche, prese in giro o isolamento dal gruppo.
-    </p>
+    <ul class="nav-tabs">
+        <li><button onclick="switchTab('info')" id="tab-info" class="active">Spazio Info</button></li>
+        <li><button onclick="switchTab('segnala')" id="tab-segnala">🚨 Segnala (Mod. 1)</button></li>
+        <li><button onclick="switchTab('download')" id="tab-download">📂 Documenti e Link</button></li>
+    </ul>
 
-    <div class="alert-box">
-        <strong>Massima Riservatezza:</strong> Si garantisce la riservatezza di colui che fa la segnalazione entro i limiti disposti dalla legge.
+    <div class="container">
+        
+        <div id="content-info" class="tab-content active">
+            <div class="card">
+                <div class="logo-container">
+                    <img src="LOGO.jpg" alt="Team Antibullismo Logo">
+                </div>
+                <h2>Presentazione della Piattaforma</h2>
+                <p class="intro-text">
+                    Questo portale ospita l'applicazione web dedicata alla raccolta e all'invio delle segnalazioni di studenti e personale scolastico dell'Istituto Superiore "Magnaghi-Solari" (sedi di Salsomaggiore Terme, Parma e Fidenza).
+                </p>
+                <p class="intro-text">
+                    L'obiettivo della piattaforma è fornire agli studenti, alle famiglie e al personale scolastico uno strumento immediato, riservato e sicuro per comunicare con il Team Antibullismo dell'istituto che provvederà ad accogliere, in prima istanza, le segnalazioni, a gestirle e a filtrarle in base alla gravità.
+                </p>
+                
+                <div class="instruction-box">
+                    <h3>📱 Istruzioni per l'Uso e Installazione</h3>
+                    <ol>
+                        <li><strong>Installa sul tuo Dispositivo:</strong> Puoi installare questo portale como un'app sul telefono o PC! Clicca sui tre puntini del browser (o l'icona "+" nella barra degli indirizzi) e seleziona <strong>"Aggiungi a schermata Home"</strong> o <strong>"Installa app"</strong>.</li>
+                        <li><strong>Account Istituzionale:</strong> Per l'invio della segnalazione, assicurarsi che sul proprio dispositivo sia configurato e attivo l'account email istituzionale della scuola.</li>
+                        <li><strong>Due modalità di segnalazione:</strong> È possibile utilizzare la sezione SEGNALA (MOD.1) per un rapido invio digitale compilando il form. In alternativa, nella sezione Documenti e Link è disponibile il modello cartaceo ufficiale.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div id="content-segnala" class="tab-content">
+            <div class="card">
+                <h2>MODULO 1: Scheda di Segnalazione Caso</h2>
+                <p class="intro-text">
+                    Usa questo modulo per segnalare in prima persona (se sei la vittima), o per conto di terzi, comportamenti offensivi, aggressioni fisiche, prese in giro o isolamento dal gruppo. La segnalazione può riguardare episodi verificatisi tra gli alunni all'interno della scuola, durante il tragitto casa-scuola, oppure online attraverso i social network, la messaggistica e i giochi in rete. Per maggiori informazioni sui fenomeni di bullismo e cyberbullismo consulta la sezione Documenti e Link. Per garantire la massima efficienza da parte della scuola si consiglia di compilare il modulo in ogni parte fornendo tutti i dettagli dell'accaduto ove possibile.
+                </p>
+                
+                <div class="note-box">
+                    <strong>Massima Riservatezza:</strong> Si garantisce la riservatezza di colui che fa la segnalazione entro i limiti disposti dalla legge.
+                </div>
+
+                <form id="bullyForm" onsubmit="sendEmail(event)">
+                    <div class="form-group row-flex">
+                        <div>
+                            <label for="segnalatore_nome">Nome di chi compila *</label>
+                            <input type="text" id="segnalatore_nome" required placeholder="Tuo nome e cognome">
+                        </div>
+                        <div>
+                            <label for="data_accaduto">Data di compilazione *</label>
+                            <input type="date" id="data_accaduto" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="scuola_plesso">Scuola / Plesso *</label>
+                        <select id="scuola_plesso" required onchange="handlePlessoChange(this)">
+                            <option value="">-- Seleziona il Plesso --</option>
+                            <option value="Magnaghi Sede Centrale - Salsomaggiore Terme">Magnaghi Sede Centrale - Salsomaggiore Terme</option>
+                            <option value="Succursale Parma">Succursale Parma</option>
+                            <option value="Plesso Tommasini">Plesso Tommasini</option>
+                            <option value="Succursale Fidenza Is. Agrario Solari">Succursale Fidenza Is. Agrario "Solari"</option>
+                            <option value="Altro luogo">Altro luogo (specificare sotto)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="altro_plesso_container" style="display: none;">
+                        <label for="altro_plesso_testo">Specificare altro luogo *</label>
+                        <input type="text" id="altro_plesso_testo" placeholder="Inserisci il luogo o contesto specifico">
+                    </div>
+
+                    <div class="form-group">
+                        <label>1. La persona che segnala il caso è: *</label>
+                        <div class="radio-box">
+                            <label class="radio-option"><input type="radio" name="ruolo_segnalatore" value="La presunta vittima" required> La presunta vittima</label>
+                            <label class="radio-option"><input type="radio" name="ruolo_segnalatore" value="Un compagno della presunta vittima"> Un compagno della presunta vittima</label>
+                            <label class="radio-option"><input type="radio" name="ruolo_segnalatore" value="Madre/Padre/Tutore della presunta vittima"> Madre/Padre/Tutore della presunta vittima</label>
+                            <label class="radio-option"><input type="radio" name="ruolo_segnalatore" value="Insegnante"> Insegnante</label>
+                            <label class="radio-option"><input type="radio" name="ruolo_segnalatore" value="Altri"> Altri</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>2. Presunta Vittima / Vittime</label>
+                        <div class="sub-section">
+                            <h4>Prima Presunta Vittima</h4>
+                            <div class="row-flex" style="margin-bottom: 8px;">
+                                <input type="text" id="vittima1_nome" placeholder="Nome e Cognome">
+                                <input type="text" id="vittima1_classe" placeholder="Classe/Sezione" style="max-width: 150px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>3. Bullo o bulli (o presunti)</label>
+                        <div class="sub-section">
+                            <div class="row-flex">
+                                <input type="text" id="bullo1_nome" placeholder="Nome del presunto bullo">
+                                <input type="text" id="bullo1_classe" placeholder="Classe" style="max-width: 150px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>4. Erano presenti altre persone? *</label>
+                        <div class="radio-inline-group">
+                            <label class="radio-option">
+                                <input type="radio" name="testimoni_presenti" value="SÌ" required onchange="handleTestimoniChange(this)"> SÌ
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="testimoni_presenti" value="NO" onchange="handleTestimoniChange(this)"> NO
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="testimoni_nomi_container" style="display: none;">
+                        <label for="testimoni_nomi">Se sì, riporta i loro nomi:</label>
+                        <textarea id="testimoni_nomi" rows="2" placeholder="Inserisci i nomi delle persone presenti..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="accaduto_testo">5. Breve presentazione dell'accaduto *</label>
+                        <textarea id="accaduto_testo" rows="4" required placeholder="Descrivi cosa è successo..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="frequenza_episodi">6. Quante volte sono successi gli episodi? *</label>
+                        <input type="text" id="frequenza_episodi" required placeholder="Es: Episodio isolato, succede ogni giorno...">
+                    </div>
+
+                    <button type="submit" class="submit-btn">INVIA SEGNALAZIONE 🚨</button>
+                </form>
+
+                <div class="emergency-box">
+                    <h3>📞 Numeri utili in caso di emergenza</h3>
+                    <ul>
+                        <li><strong>114</strong> - Emergenza Infanzia (gestito da Telefono Azzurro)</li>
+                        <li><strong>1.96.96</strong> - Linea d'ascolto Telefono Azzurro</li>
+                        <li><strong>112</strong> - Numero Unico di Emergenza (Forze dell'Ordine)</li>
+                        <li><strong>118</strong> - Emergenza sanitaria</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="content-download" class="tab-content">
+            <div class="card">
+                <h2>Documenti, Modulistica e Link Utili</h2>
+                <p class="intro-text" style="margin-bottom: 20px;">
+                    In questa sezione è possibile scaricare la documentazione ufficiale d'Istituto o accedere ai portali istituzionali esterni di riferimento.
+                </p>
+                
+                <ul class="download-list">
+                    <li class="download-item">
+                        <div class="file-info">
+                            <h4>Vademecum Gestione Presunti Atti</h4>
+                            <p>Documento e linee guida ufficiali d'Istituto</p>
+                        </div>
+                        <a href="VADEMECUM_GESTIONE_ATTI_BULLISMO.pdf" download class="download-link">Scarica PDF</a>
+                    </li>
+                    
+                    <li class="download-item">
+                        <div class="file-info">
+                            <h4>Codice di Intervento Anti-Bullismo e Cyberbullismo</h4>
+                            <p>Delibera del Consiglio di Istituto N. 144/2023-2026</p>
+                        </div>
+                        <a href="CODICE_INTERVENTO_ANTIBULLISMO.pdf" download class="download-link">Scarica PDF</a>
+                    </li>
+
+                    <li class="download-item">
+                        <div class="file-info">
+                            <h4>Modulo 1 - Scheda di Segnalazione Caso</h4>
+                            <p>Modello cartaceo ufficiale d'istituto per la segnalazione</p>
+                        </div>
+                        <a href="MODULO_1_segnalazione.pdf" download class="download-link">Scarica PDF</a>
+                    </li>
+
+                    <li class="download-item">
+                        <div class="file-info">
+                            <h4>Telefono Azzurro - Linee Guida e Materiali</h4>
+                            <p>Documentazione e supporti per la tutela dei minori</p>
+                        </div>
+                        <a href="https://azzurro.it/wp-content/uploads/2023/02/TA_SID23_genitori_web.pdf" target="_blank" class="download-link">Apri Link</a>
+                    </li>
+
+                    <li class="download-item">
+                        <div class="file-info">
+                            <h4>Piattaforma ELISA</h4>
+                            <p>Formazione e monitoraggio del bullismo e cyberbullismo - MIUR</p>
+                        </div>
+                        <a href="https://www.piattaformaelisa.it/" target="_blank" class="download-link">Apri Link</a>
+                    </li>
+
+                    <li class="download-item">
+                        <div class="file-info">
+                            <h4>Generazioni Connesse</h4>
+                            <p>Safer Internet Centre Italiano - Sicurezza in Rete</p>
+                        </div>
+                        <a href="https://www.generazioniconnesse.it/" target="_blank" class="download-link">Apri Link</a>
+                    </li>
+
+                    <li class="download-item">
+                        <div class="file-info">
+                            <h4>MIUR - Bullismo e Cyberbullismo</h4>
+                            <p>Portale ufficiale del Ministero dell'Istruzione e del Merito</p>
+                        </div>
+                        <a href="https://www.istruzione.it/bullismo-e-cyberbullismo/index.html" target="_blank" class="download-link">Apri Link</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            I.S.I.S.S. "Magnaghi - Solari" - Salsomaggiore Terme • Fidenza • Parma<br>
+            Contatti: pris006003@istruzione.it | pris006003@pec.istruzione.it
+            
+            <div class="social-support-text">
+                💙 Chiedi aiuto oggi: la differenza inizia ora. Siamo al tuo fianco sempre. #NoBullismo
+            </div>
+
+            <div class="footer-links">
+                <a href="https://www.magnaghisolari.edu.it/privacy" target="_blank">Informativa Privacy</a>
+                <a href="https://www.magnaghisolari.edu.it/note-legali" target="_blank">Note legali</a>
+                <a href="https://form.agid.gov.it/ismpr/www_magnaghisolari_edu_it/dichiarazione" target="_blank">Dichiarazione di accessibilità</a>
+                <!-- Link al Sito Desk del Portale richiesto -->
+                <a href="https://teamantibullismo.github.io/Segnalazioni_Bullismo_MagnaghiSolari/" target="_blank" style="color: var(--red-button); font-weight: bold;">💻 Vai al Sito Desk del Portale</a>
+            </div>
+            <div class="github-footer-box">
+                🛠️ <a href="https://github.com/teamantibullismo/team-antibullismo/blob/main/README.md" target="_blank">README.md del Progetto</a>: Consulta la documentazione tecnica e le note di sviluppo direttamente sul repository.
+            </div>
+        </footer>
     </div>
 
-    <form id="segnalazioneForm">
-        <div class="form-group">
-            <label for="nomeCompila">Nome di chi compila *</label>
-            <input type="text" id="nomeCompila" placeholder="Tuo nome e cognome" required>
-        </div>
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tabs button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            document.getElementById('content-' + tabId).classList.add('active');
+            document.getElementById('tab-' + tabId).classList.add('active');
+        }
 
-        <div class="form-group">
-            <label for="dataCompilazione">Data di compilazione *</label>
-            <input type="date" id="dataCompilazione" required>
-        </div>
+        function handlePlessoChange(select) {
+            const altroContainer = document.getElementById('altro_plesso_container');
+            const altroInput = document.getElementById('altro_plesso_testo');
+            if (select.value === "Altro luogo") {
+                altroContainer.style.display = "block";
+                altroInput.required = true;
+            } else {
+                altroContainer.style.display = "none";
+                altroInput.required = false;
+                altroInput.value = "";
+            }
+        }
 
-        <div class="form-group">
-            <label for="scuolaPlesso">Scuola / Plesso *</label>
-            <select id="scuolaPlesso" required>
-                <option value="">-- Seleziona il Plesso --</option>
-                <option value="magnaghi">Magnaghi</option>
-                <option value="solari">Solari</option>
-            </select>
-        </div>
+        function handleTestimoniChange(radio) {
+            const container = document.getElementById('testimoni_nomi_container');
+            const textarea = document.getElementById('testimoni_nomi');
+            if (radio.value === "SÌ") {
+                container.style.display = "block";
+                textarea.required = true;
+            } else {
+                container.style.display = "none";
+                textarea.required = false;
+                textarea.value = "";
+            }
+        }
 
-        <div class="form-group">
-            <label>1. La persona che segnala il caso è: *</label>
-            <div class="radio-box">
-                <div class="radio-option"><input type="radio" name="ruolo_segnalatore" value="vittima" required> La presunta vittima</div>
-                <div class="radio-option"><input type="radio" name="ruolo_segnalatore" value="compagno"> Un compagno della presunta vittima</div>
-                <div class="radio-option"><input type="radio" name="ruolo_segnalatore" value="genitore"> Madre/Padre/Tutore della presunta vittima</div>
-                <div class="radio-option"><input type="radio" name="ruolo_segnalatore" value="insegnante"> Insegnante</div>
-                <div class="radio-option"><input type="radio" name="ruolo_segnalatore" value="altri"> Altri</div>
-            </div>
-        </div>
+        function sendEmail(event) {
+            event.preventDefault();
+            
+            const segnalatore = document.getElementById('segnalatore_nome').value;
+            const data = document.getElementById('data_accaduto').value;
+            let plesso = document.getElementById('scuola_plesso').value;
+            
+            if (plesso === "Altro luogo") {
+                const specificazione = document.getElementById('altro_plesso_testo').value;
+                plesso = "Altro luogo (" + specificazione + ")";
+            }
+            
+            const ruolo = document.querySelector('input[name="ruolo_segnalatore"]:checked').value;
+            const vit1_n = document.getElementById('vittima1_nome').value || "Non specificato";
+            const vit1_c = document.getElementById('vittima1_classe').value || "-";
+            const bul1_n = document.getElementById('bullo1_nome').value || "Non specificato";
+            const bul1_c = document.getElementById('bullo1_classe').value || "-";
+            
+            const testimoniPresenti = document.querySelector('input[name="testimoni_presenti"]:checked').value;
+            const testimoniNomi = document.getElementById('testimoni_nomi').value || "Nessuno";
 
-        <div class="form-group">
-            <label>2. Presunta Vittima / Vittime</label>
-            <div class="radio-box" style="background: #fff;">
-                <input type="text" id="vittimaNome" placeholder="Nome e Cognome" style="margin-bottom: 10px;">
-                <input type="text" id="vittimaClasse" placeholder="Classe/Sezione">
-            </div>
-        </div>
+            const accaduto = document.getElementById('accaduto_testo').value;
+            const frequenza = document.getElementById('frequenza_episodi').value;
 
-        <div class="form-group">
-            <label>3. Bullo o bulli (o presunti)</label>
-            <div class="radio-box" style="background: #fff;">
-                <input type="text" id="bulloNome" placeholder="Nome del presunto bullo" style="margin-bottom: 10px;">
-                <input type="text" id="bulloClasse" placeholder="Classe">
-            </div>
-        </div>
+            const emailTo = "team.antibullismo@magnaghisolari.edu.it";
+            const subject = encodeURIComponent("SEGNALAZIONE MODULO 1 - " + plesso);
+            
+            let body = `MODULO 1 - SEGNALAZIONE CASO\n`;
+            body += `---------------------------------------------------------\n`;
+            body += `Compilato da: ${segnalatore}\n`;
+            body += `Data: ${data}\n`;
+            body += `Plesso: ${plesso}\n`;
+            body += `Ruolo: ${ruolo}\n\n`;
+            body += `PRESUNTA VITTIMA: ${vit1_n} (Classe: ${vit1_c})\n`;
+            body += `PRESUNTO BULLO: ${bul1_n} (Classe: ${bul1_c})\n\n`;
+            body += `ALTRE PERSONE PRESENTI?: ${testimoniPresenti}\n`;
+            if (testimoniPresenti === "SÌ") {
+                body += `NOMI TESTIMONI: ${testimoniNomi}\n\n`;
+            } else {
+                body += `\n`;
+            }
+            body += `DESCRIZIONE:\n${accaduto}\n\n`;
+            body += `FREQUENZA: ${frequenza}\n`;
+            body += `---------------------------------------------------------\n`;
 
-        <div class="form-group">
-            <label>4. Erano presenti altre persone? *</label>
-            <div class="radio-box">
-                <input type="radio" name="altre_persone" value="si"> SÌ &nbsp;&nbsp;
-                <input type="radio" name="altre_persone" value="no"> NO
-            </div>
-        </div>
+            const mailtoLink = `mailto:${emailTo}?subject=${subject}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+        }
 
-        <div class="form-group">
-            <label for="descrizioneAccaduto">5. Breve presentazione dell'accaduto *</label>
-            <textarea id="descrizioneAccaduto" placeholder="Descrivi cosa è successo..." required></textarea>
-        </div>
+        // Script Pulsante Condividi Interno
+        const shareBtn = document.getElementById('shareBtn');
+        if (navigator.share) {
+            shareBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.share({
+                        title: 'Portale Segnalazioni - Casi di presunto Bullismo e Cyberbullismo',
+                        text: 'Accedi al portale ufficiale di segnalazione dell\'I.S.I.S.S. Magnaghi-Solari.',
+                        url: window.location.href
+                    });
+                } catch (err) { console.log('Condivisione annullata', err); }
+            });
+        } else {
+            shareBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Link del portale copiato negli appunti! Ora puoi condividerlo.');
+            });
+        }
 
-        <div class="form-group">
-            <label for="frequenzaEpisodi">6. Quante volte sono successi gli episodi? *</label>
-            <input type="text" id="frequenzaEpisodi" placeholder="Es: Episodio isolato, succede ogni giorno..." required>
-        </div>
-
-        <button type="submit" id="inviaSegnalazioneBtn" class="btn-invia">Invia Segnalazione 🚨</button>
-    </form>
-
-    <div class="emergency-footer">
-        <strong>📞 Numeri utili in caso di emergenza</strong>
-        <ul>
-            <li><strong>114</strong> - Emergenza Infanzia (Telefono Azzurro)</li>
-            <li><strong>1.96.96</strong> - Linea d'ascolto Telefono Azzurro</li>
-            <li><strong>112</strong> - Numero Unico di Emergenza</li>
-        </ul>
-    </div>
-</div>
-
-<script>
-function calcolaTriageSegnalazione() {
-    let punteggio = 0;
-    let forzaRosso = false;
-
-    const chiSegnala = document.querySelector('input[name="ruolo_segnalatore"]:checked')?.value;
-    if (chiSegnala === "insegnante") punteggio += 3;
-    else if (chiSegnala === "vittima" || chiSegnala === "genitore") punteggio += 2;
-    else punteggio += 1;
-
-    const testoFrequenza = document.getElementById('frequenzaEpisodi').value.toLowerCase();
-    if (testoFrequenza.includes("giorno") || testoFrequenza.includes("sistematico") || testoFrequenza.includes("sempre") || testoFrequenza.includes("quotidiano")) {
-        punteggio += 5;
-    } else if (testoFrequenza.includes("volte") || testoFrequenza.includes("spesso") || testoFrequenza.includes("ripetuto") || testoFrequenza.includes("settimana")) {
-        punteggio += 3;
-    } else {
-        punteggio += 1;
-    }
-
-    const testoDescrizione = document.getElementById('descrizioneAccaduto').value.toLowerCase();
-    const paroleGiallo = ["insulti", "offese", "mi escludono", "isolato", "prendono in giro", "denigrazione", "presa in giro", "escluso"];
-    const paroleRosso = ["foto", "video", "instagram", "tiktok", "chat", "whatsapp", "ricatto", "minaccia", "botte", "calci", "pugni", "soldi", "estorsione", "social", "pubblicato"];
-
-    let haParoleGiallo = paroleGiallo.some(parola => testoDescrizione.includes(parola));
-    if (haParoleGiallo) punteggio += 3;
-
-    let haParoleRosso = paroleRosso.some(parola => testoDescrizione.includes(parola));
-    if (haParoleRosso) forzaRosso = true;
-
-    let codiceColore = "";
-    let azioni = "";
-
-    if (forzaRosso || punteggio >= 10) {
-        codiceColore = "🔴 ROSSO (Emergenza / Cyberbullismo / Violenza)";
-        azioni = "Intervento immediato: attivazione dirigenza e protocolli di emergenza.";
-    } else if (punteggio >= 6) {
-        codiceColore = "🟡 GIALLO (Prepotenze continuate)";
-        azioni = "Intervento coordinato: attivazione del team docenti e supporto psicologico.";
-    } else {
-        codiceColore = "🟢 VERDE (Basso rischio)";
-        azioni = "Mediazione: monitoraggio discreto e risoluzione del conflitto ordinario.";
-    }
-
-    return { punteggio: punteggio, colore: codiceColore, indicazioni: azioni };
-}
-
-document.getElementById('segnalazioneForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const esitoTriage = calcolaTriageSegnalazione();
-    
-    alert(
-        "SEGNALAZIONE INVIATA CON SUCCESSO!\n\n" +
-        "Filtro di Triage Interno:\n" +
-        "Livello calcolato: " + esitoTriage.colore + "\n" +
-        "Azione: " + esitoTriage.indicazioni
-    );
-});
-</script>
+        // --- ATTIVAZIONE PWA ---
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('PWA Service Worker Registrato con successo!', reg))
+                .catch(err => console.log('Errore nella registrazione del Service Worker PWA:', err));
+            });
+        }
+    </script>
 </body>
 </html>
