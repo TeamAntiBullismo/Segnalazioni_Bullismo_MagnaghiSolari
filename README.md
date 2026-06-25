@@ -1,8 +1,8 @@
- 🚨 Portale Segnalazioni - Casi di presunto Bullismo e Cyberbullismo - I.S.I.S.S. "Magnaghi-Solari"
+ 🚨 Portale Segnalazioni casi di presunto Bullismo e Cyberbullismo - I.S.I.S.S. "Magnaghi-Solari".
 
-Questo repository ospita l'applicazione web  dedicata alla raccolta e all'invio delle segnalazioni di studenti e personale scolastico dell'Istituto Superiore "Magnaghi-Solari" (sedi di Salsomaggiore Terme, Parma e Fidenza).
+Questo repository ospita l'applicazione web  dedicata alla raccolta e all'invio delle segnalazioni di studenti, genitori e personale scolastico dell'Istituto Superiore "Magnaghi-Solari" (sedi di Salsomaggiore Terme, Parma e Fidenza).
 
-L'obiettivo della piattaforma è fornire agli studenti, alle famiglie e al personale scolastico uno strumento immediato, riservato e sicuro per comunicare con il Team Antibullismo dell'istituto che provvederà ad accogliere, in prima instanza, le segnalazioni, a gestirle e a filtrarle in base alla gravità. 
+L'obiettivo della piattaforma è fornire agli studenti, alle famiglie e al personale scolastico uno strumento immediato, riservato e sicuro per comunicare con il Team Antibullismo dell'Istituto che provvederà ad accogliere, in prima instanza, le segnalazioni, a gestirle e a filtrarle in base alla gravità. 
 
 
 📱 Istruzioni per l'Uso e Consigli Operativi.
